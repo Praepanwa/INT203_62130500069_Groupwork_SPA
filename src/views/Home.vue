@@ -1,12 +1,17 @@
 <template>
-  <p class="text-8xl">
-    <span class="text-yellow-500">DROP BY</span
-    ><span class="italic text-indigo-400"> DOUGH</span>
-  </p>
-  
-<section>
- <p
-    class="text-4xl transition duration-500 ease-in-out transform hover:-skew-x-12 text-dark-blue"
+  <div class="justify-items-center">
+   
+      <p class="text-sm text-green-emeral justify-end">feedback and catalog</p>
+      <p class="text-8xl">
+      <span class="text-yellow-500">DROP BY</span>
+      <span class="italic text-indigo-400"> DOUGH</span>
+      </p>
+
+    
+  </div>
+
+  <p
+    class="text-4xl transition duration-500 ease-in-out transform hover:-skew-x-12 text-purple-lavender"
   >
     CAKE
   </p>
@@ -21,7 +26,7 @@
   </div>
 
   <p
-    class="text-4xl transition duration-500 ease-in-out transform hover:-skew-x-12 text-dark-blue"
+    class="text-4xl transition duration-500 ease-in-out transform hover:-skew-x-12 text-purple-lavender"
   >
     Drinks
   </p>
@@ -35,7 +40,9 @@
     </div>
   </div>
 
-  <p class="text-4xl transition duration-500 ease-in-out transform hover:-skew-x-12 text-dark-blue">
+  <p
+    class="text-4xl transition duration-500 ease-in-out transform hover:-skew-x-12 text-purple-lavender"
+  >
     Donuts
   </p>
   <div class="p-2 bg-blue-200">
@@ -47,16 +54,10 @@
       </div>
     </div>
   </div>
-</section>
- 
-
-
 </template>
 
 <script>
 // @ is an alias to /src
-
-
 
 export default {
   name: "Home",
@@ -93,7 +94,7 @@ export default {
   },
 };
 </script>
-<style scoped>
+<style >
 .item img {
   transition: transform 0.3s, filter 1.5s ease-in-out;
   filter: grayscale(100%);
@@ -103,5 +104,4 @@ export default {
   filter: grayscale(0);
   transform: scale(1.05);
 }
-
 </style>
