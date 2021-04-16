@@ -1,14 +1,15 @@
 <template>
-  <h1>Drinks Menu</h1>
-  <div v-for="drink in drinks" :key="drink.id">
-      <img :src="drink.img" />
-      <h3>{{drink.name}}</h3>
-      <p>price : {{drink.price}}</p>
-  </div>
+  <div class="text-4xl transition duration-500 ease-in-out transform hover:-skew-x-12 ">
+      <span class="text-yellow-500">Drinks </span>
+      <span class="text-indigo-600">Menu</span>
+</div>
+<base-card :items="drinks"></base-card>
 </template>
 
 <script>
+import BaseCard from '../components/BaseCard.vue'
 export default {
+  components: { BaseCard },
 data(){
     return{
         drinks:[

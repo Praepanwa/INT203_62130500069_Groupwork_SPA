@@ -1,13 +1,17 @@
 <template>
-  <div id="nav">
-    <router-link to="/">Home</router-link> |
-    <router-link :to="{name:'Drinks'}">Drinks</router-link>
-    <router-link :to="{name:'Donuts'}">Donuts</router-link>
-     <router-link :to="{name:'Cakes'}">Cake</router-link>
-  </div>
-  <router-view/>
-</template>
 
+<div class="transition duration-500 bg-gray-50 w-full h-screen">
+<nav-bar />
+<router-view />  
+  </div>
+</template>
+<script>
+import NavBar from './components/NavBar.vue'
+export default {
+  components: { NavBar },
+
+}
+</script>
 <style>
 #app {
   font-family: Avenir, Helvetica, Arial, sans-serif;
@@ -17,16 +21,6 @@
   color: #2c3e50;
 }
 
-#nav {
-  padding: 30px;
-}
 
-#nav a {
-  font-weight: bold;
-  color: #2c3e50;
-}
 
-#nav a.router-link-exact-active {
-  color: #42b983;
-}
 </style>

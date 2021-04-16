@@ -1,13 +1,14 @@
 <template>
-  <h1>Donut Menu</h1>
-  <div v-for="donut in donuts" :key="donut.id">
-      <img :src="donut.img" />
-      <h3>price : {{donut.name}}</h3>
-  </div>
+  <h1 class="text-4xl transition duration-500 ease-in-out transform hover:-skew-x-12 ">
+      <span class="text-yellow-500">Donut </span>
+      <span class="text-indigo-600">Menu</span></h1>
+  <base-card :items="donuts"></base-card>
 </template>
 
 <script>
+
 export default {
+ 
 data(){
     return{
         donuts:[

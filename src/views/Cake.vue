@@ -1,10 +1,10 @@
 <template>
-  <h1>Cake Menu</h1>
-  <div v-for="cake in cakes" :key="cake.id">
-      <img :src="cake.img" alt="" />
-      <p>{{cake.name}}</p>
-      <p>price : {{cake.price}}</p>
+  <div class="text-4xl transition duration-500 ease-in-out transform hover:-skew-x-12 ">
+    <span class="text-yellow-500"> Cake </span>
+      <span class="text-indigo-600">Menu</span>
   </div>
+    <base-card :items="cakes"></base-card>
+
 </template>
 
 <script>
