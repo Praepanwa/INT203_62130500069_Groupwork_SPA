@@ -1,8 +1,5 @@
 <template>
-  <h1 class="text-4xl transition duration-500 ease-in-out transform hover:-skew-x-12 ">
-      <span class="text-yellow-500">Donut </span>
-      <span class="text-indigo-600">Menu</span></h1>
-  <base-card :items="donuts"></base-card>
+  <base-card :items="donuts">Donuts</base-card>
 </template>
 
 <script>

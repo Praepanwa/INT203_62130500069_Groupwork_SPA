@@ -1,20 +1,28 @@
 <template>
   <div class="content">
-    <slot>
-      <div class="grid grid-cols-3 gap-4 p-3">
+
+<h1 class="text-4xl transition duration-500 ease-in-out transform hover:-skew-x-12 ">
+      <span class="text-yellow-500"><slot></slot></span>
+      <span class="text-indigo-600"> Menu</span>
+</h1>
+
+      <div class="grid grid-cols-3 gap-4 ">
         <div v-for="item in items" :key="item.id">
-          <img :src="item.img" />
-          <h3>{{item.name}}</h3>
-          <h3>price : {{ item.price}}</h3>
+            <div class="list bg-yellow-500">
+                 <img :src="item.img" />
+          <h3>{{ item.name }}</h3>
+          <h3>price : {{ item.price }}</h3>
+            </div>
+         
         </div>
       </div>
-    </slot>
+
   </div>
 </template>
 
 <script>
 export default {
-  props: ["items"],
+  props: ["items","menu"],
 };
 </script>
 
@@ -45,10 +53,14 @@ export default {
 .content {
   width: 100%;
   max-width: 100%;
-  height: 100%;
-  margin: 0 auto;
+  margin: auto;
   padding: 0;
   position: relative;
   z-index: 2;
+}
+
+.list{
+    margin:5px;
+
 }
 </style>

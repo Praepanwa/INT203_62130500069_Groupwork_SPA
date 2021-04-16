@@ -1,15 +1,12 @@
 <template>
-  <div class="text-4xl transition duration-500 ease-in-out transform hover:-skew-x-12 ">
-      <span class="text-yellow-500">Drinks </span>
-      <span class="text-indigo-600">Menu</span>
-</div>
-<base-card :items="drinks"></base-card>
+
+<base-card :items="drinks">Drinks</base-card>
 </template>
 
 <script>
-import BaseCard from '../components/BaseCard.vue'
+
 export default {
-  components: { BaseCard },
+ 
 data(){
     return{
         drinks:[

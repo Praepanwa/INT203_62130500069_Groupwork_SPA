@@ -2,13 +2,16 @@
 
 <div class="transition duration-500 bg-gray-50 w-full h-screen">
 <nav-bar />
-<router-view />  
-  </div>
+<router-view /> 
+ <Footer/>
+</div>
+
 </template>
 <script>
+import Footer from './components/Footer.vue'
 import NavBar from './components/NavBar.vue'
 export default {
-  components: { NavBar },
+  components: { NavBar, Footer },
 
 }
 </script>
@@ -20,6 +23,7 @@ export default {
   text-align: center;
   color: #2c3e50;
 }
+
 
 
 
