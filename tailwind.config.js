@@ -26,7 +26,9 @@ module.exports = {
         },
         purple:{
           lavender:"#8a7fab"
-        }
+        },
+        coral:{
+          orange:"#FF7F50"}
       }
     },
   },

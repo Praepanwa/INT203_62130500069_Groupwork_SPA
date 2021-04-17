@@ -1,23 +1,53 @@
 {
   "comments": [
     {
-      "reviewedmenu": "ice cream",
-      "rating": "5",
-      "comment": "ช้อคโกเเลตเข้มข้น",
-      "id": 2
-    },
-    {
       "customerName": "kikiphhaeng",
-      "reviewedmenu": "ฝอยทอง",
-      "rating": "3",
-      "comment": "ไม่ได้กินร้านนี้",
+      "reviewedmenu": "Nutella and Hazelnut",
+      "rating": "5",
+      "comment": "ช็อคโกแล็ตเข้มข้นมาก",
       "id": 3
     },
     {
-      "reviewedmenu": "โดนัท",
+      "customerName": "sungchan",
+      "reviewedmenu": "white-cold brew",
       "rating": "4",
-      "comment": "เเยมอร่อย",
-      "id": 4
+      "comment": "i really like it somuch!",
+      "id": 5
+    },
+    {
+      "customerName": "shotaro",
+      "reviewedmenu": "new york cheese cake",
+      "rating": "4",
+      "comment": "i want taro milk tea",
+      "id": 6
+    },
+    {
+      "customerName": "jaehyun",
+      "reviewedmenu": "Becon-cheeda cheese",
+      "rating": "5",
+      "comment": "ลงตัวเเบบเเปลกๆ ว้าวซ่ามาก",
+      "id": 7
+    },
+    {
+      "customerName": "dongyeong",
+      "reviewedmenu": "Raspberry Rose",
+      "rating": "3",
+      "comment": "",
+      "id": 8
+    },
+    {
+      "customerName": "winwin",
+      "reviewedmenu": "matcha-latte",
+      "rating": "3",
+      "comment": "a little bit sweet",
+      "id": 9
+    },
+    {
+      "customerName": "kun quian",
+      "reviewedmenu": "milk-tea",
+      "rating": "3",
+      "comment": "",
+      "id": 10
     }
   ]
 }
