@@ -15,13 +15,6 @@
       "id": 5
     },
     {
-      "customerName": "shotaro",
-      "reviewedmenu": "new york cheese cake",
-      "rating": "4",
-      "comment": "i want taro milk tea",
-      "id": 6
-    },
-    {
       "customerName": "jaehyun",
       "reviewedmenu": "Becon-cheeda cheese",
       "rating": "5",
@@ -45,9 +38,16 @@
     {
       "customerName": "kun quian",
       "reviewedmenu": "milk-tea",
-      "rating": "3",
-      "comment": "",
+      "rating": "4",
+      "comment": "ชอบมากๆครับ",
       "id": 10
+    },
+    {
+      "customerName": "jungwoo",
+      "reviewedmenu": "brownie",
+      "rating": "5",
+      "comment": "ราคาอร่อยเเละถูกมาก",
+      "id": 11
     }
   ]
 }

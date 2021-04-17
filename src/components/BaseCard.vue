@@ -9,10 +9,10 @@
 
     <div class="grid grid-cols-3 gap-4">
       <div v-for="item in items" :key="item.id">
-        <div class="list bg-pale-yellow">
-          <img :src="item.img" />
+        <div class="list bg-pale-yellow rounded-lg">
+          <img :src="item.img" class="rounded-lg" />
           <div
-            class="text-sm font-semibold font-serif text-ombre-blue hover:text-green-400"
+            class="text-sm font-semibold font-serif text-ombre-blue hover:text-green-400 pt-2 "
           >
             {{ item.name }}
           </div>

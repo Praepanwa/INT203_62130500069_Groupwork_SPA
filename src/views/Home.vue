@@ -1,282 +1,289 @@
 <template>
-<div class="page p-auto">
-<div class="justify-items-center">
-    <p class="text-8xl">
-      <span class="text-yellow-500">DROP BY</span>
-      <span class="italic text-indigo-400"> DOUGH</span>
-    </p>
-  </div>
-<p class="text-green-600 text-4xl pb-10">catalog and feedback</p>
-  <p
-    class="text-4xl transition duration-500 ease-in-out transform hover:-skew-x-12 text-purple-lavender"
-  >
-    CAKE
-  </p>
-  <div class="p-2">
-    <div class="grid grid-cols-4 gap-2">
-      <div v-for="c in cakePoster" :key="c.id">
-        <div
-          class="rounded-full h-60 w-60 flex items-center justify-center bg-green-600 posterBox"
-        >
-          <div class="m-2 item">
-            <img class="w-1/2 m-auto" :src="c.img" />
-          </div>
-        </div>
-      </div>
+  <div class="page p-auto">
+    <div class="justify-items-center">
+      <p class="text-8xl">
+        <span class="text-yellow-500">DROP BY</span>
+        <span class="italic text-indigo-400"> DOUGH</span>
+      </p>
     </div>
-  </div>
-
-  <p
-    class="text-4xl transition duration-500 ease-in-out transform hover:-skew-x-12 text-purple-lavender"
-  >
-    Drinks
-  </p>
-  <div class="p-2">
-    <div class="grid grid-cols-4 gap-2">
-      <div v-for="d in drinkPoster" :key="d.id">
-        <div
-          class="rounded-full h-60 w-60 flex items-center justify-center bg-yellow-500 posterBox"
-        >
-          <div class="m-2 item">
-            <img class="w-1/2 m-auto" :src="d.img" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <p
-    class="text-4xl transition duration-500 ease-in-out transform hover:-skew-x-12 text-purple-lavender"
-  >
-    Donuts
-  </p>
-  <div class="p-2">
-    <div class="grid grid-cols-4 gap-2">
-      <div v-for="d in donutPoster" :key="d.id">
-        <div
-          class="rounded-full h-60 w-60 flex items-center justify-center bg-indigo-400 posterBox"
-        >
-          <div class="m-2 item">
-            <img class="w-1/2 m-auto" :src="d.img" />
-          </div>
-        </div>
-      </div>
-    </div>
-  </div>
-
-  <div class="pt-10 feedBack text-6xl text-slamon-pink col-2">FEEDBACK</div>
-   <div class="pb-10 feedBack text-4xl text-green-600 col-2">from customer</div>
-  <div class="grid grid-cols-2 gap-3 mb-8 mx-6">
-    <div
-      class="rounded-full h-96 w-96 flex items-center justify-center bg-pale-yellow commentBox"
-    >
-      <div class="m-auto p-8">
-        <form @submit.prevent="addFeedback">
-          <div class="pb-6">
-            <label for="customerName" class="my-96">reviewer : </label>
-            <input
-              type="text"
-              id="customerName"
-              v-model="customerName"
-              placeholder="enter your name"
-              class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-              required
-            />
-          </div>
-
-          <div class="pb-6">
-            <label for="reviewedMenu">Menu : </label>
-            <input
-              type="text"
-              id="reviewedMenu"
-              v-model="reviewedmenu"
-              placeholder="your menu"
-              class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-              required
-            />
-          </div>
-          <div>
-            <p class="text-black">Please rating your menu:</p>
-            <input
-              type="radio"
-              id="5"
-              v-model="rating"
-              name="rating"
-              value="5"
-            />
-            <label for="5" class="p-2">5</label>
-            <input
-              type="radio"
-              id="4"
-              v-model="rating"
-              name="rating"
-              value="4"
-            />
-            <label for="4" class="p-2">4</label>
-            <input
-              type="radio"
-              id="3"
-              v-model="rating"
-              name="rating"
-              value="3"
-            />
-            <label for="3" class="p-2">3</label>
-            <input
-              type="radio"
-              id="2"
-              v-model="rating"
-              name="rating"
-              value="2"
-            />
-            <label for="2" class="p-2">2</label>
-            <input
-              type="radio"
-              id="1"
-              v-model="rating"
-              name="rating"
-              value="1"
-            />
-            <label for="1" class="p-2">1</label>
-          </div>
-          <div class="pb-6">
-            <label for="comment">Comments : </label>
-            <input
-              type="text"
-              id="comment"
-              v-model="comment"
-              placeholder="your comment"
-              class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-            />
-          </div>
-          <button
-            type="submit"
-            class="p-2 rounded-full bg-green-400 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
-          >
-            submit
-          </button>
-        </form>
-      </div>
-    </div>
-    <div class="bg-ombre-blue p-6 grid grid-cols-3 gap-4">
-      <div class="list" v-for="result in feedbackResults" :key="result.id">
-        <div class="text-pale-yellow">
-          <div class="bg-coral-orange reviewBox m-2 p-2">
-            <div>
-              Review from:
-              <span class="text-indigo-800">{{ result.customerName }}</span>
-            </div>
-            <div>
-              menu:
-              <span class="text-indigo-800">{{ result.reviewedmenu }}</span>
-            </div>
-            <div>
-              rating: <span class="text-indigo-800">{{ result.rating }}</span>
-            </div>
-            <div v-if="result.comment">
-              comments:
-              <span class="text-indigo-800">{{ result.comment }}</span>
-            </div>
-            <div class="p-2">
-              <button
-                class="bg-green-emeral p-1.5 m-4 rounded-full"
-                @click="editFeedback"
-              >
-                EDIT
-              </button>
-              <button
-                class="bg-dark-rose p-1.5 m-1 rounded-full"
-                @click="deleteFeedback(result.id)"
-              >
-                DELETE
-              </button>
-            </div>
-          </div>
-
-          <div>
-            <form @submit.prevent="editSubmit(result)" v-if="isEdit">
-              <div class="pb-6">
-                <p>{{ result.customerName }}</p>
+    <p class="text-green-600 text-4xl pb-10">catalog and feedback</p>
+    <div class="place-items-end">
+      <div class="p-2">
+        <div class="grid grid-cols-5 gap-2">
+          <div v-for="c in cakePoster" :key="c.id">
+            <div
+              class="rounded-full h-60 w-60 flex items-center justify-center bg-green-600 posterBox"
+            >
+              <div class="m-2 item">
+                <img class="rounded-full h-44 w-48 m-auto" :src="c.img" />
               </div>
+            </div>
+          </div>
+          <div class="listMenu justify-items-start pr-56">
+            <p
+              class="text-6xl transition duration-500 ease-in-out transform hover:-skew-x-12 text-purple-lavender"
+            >
+              CAKE
+            </p>
+          </div>
+        </div>
+      </div>
 
-              <div class="pb-6">
-                <label for="reviewedMenu">Menu : </label>
-                <input
-                  type="text"
-                  id="reviewedMenu"
-                  v-model="newMenuName"
-                  placeholder="your menu"
-                  class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                  required
-                />
+      <div class="p-2">
+        <div class="grid grid-cols-5 gap-2">
+          <div v-for="d in drinkPoster" :key="d.id">
+            <div
+              class="rounded-full h-60 w-60 flex items-center justify-center bg-yellow-500 posterBox"
+            >
+              <div class="m-2 item">
+                <img class="rounded-full h-44 w-48 m-auto" :src="d.img" />
               </div>
+            </div>
+          </div>
+          <div class="listMenu justify-items-start pr-56">
+            <p
+              class="text-6xl transition duration-500 ease-in-out transform hover:-skew-x-12 text-purple-lavender"
+            >
+              Drinks
+            </p>
+          </div>
+        </div>
+      </div>
 
+      <div class="p-2">
+        <div class="grid grid-cols-5 gap-2">
+          <div v-for="d in donutPoster" :key="d.id">
+            <div
+              class="rounded-full h-60 w-60 flex items-center justify-center bg-indigo-400 posterBox"
+            >
+              <div class="m-2 item">
+                <img class="rounded-full h-44 w-48 m-auto" :src="d.img" />
+              </div>
+            </div>
+          </div>
+          <div class="listMenu justify-items-start pr-56">
+            <p
+              class="text-6xl transition duration-500 ease-in-out transform hover:-skew-x-12 text-purple-lavender"
+            >
+              Donuts
+            </p>
+          </div>
+        </div>
+      </div>
+    </div>
+
+    <div class="pt-10 feedBack text-6xl text-slamon-pink col-2">FEEDBACK</div>
+    <div class="pb-10 feedBack text-4xl text-green-600 col-2">
+      from customer
+    </div>
+    <div class="grid grid-cols-2 gap-3 mb-8 mx-6 items-center justify-center">
+      <div class="rounded-full h-96 w-96 flex bg-pale-yellow commentBox ml-40">
+        <div class="m-auto p-8">
+          <form @submit.prevent="addFeedback">
+            <div class="pb-6">
+              <label for="customerName" class="my-96">reviewer : </label>
+              <input
+                type="text"
+                id="customerName"
+                v-model="customerName"
+                placeholder="enter your name"
+                class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                required
+              />
+            </div>
+
+            <div class="pb-6">
+              <label for="reviewedMenu">Menu : </label>
+              <input
+                type="text"
+                id="reviewedMenu"
+                v-model="reviewedmenu"
+                placeholder="your menu"
+                class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                required
+              />
+            </div>
+            <div>
+              <p class="text-black">Please rating your menu:</p>
+              <input
+                type="radio"
+                id="5"
+                v-model="rating"
+                name="rating"
+                value="5"
+              />
+              <label for="5" class="p-2">5</label>
+              <input
+                type="radio"
+                id="4"
+                v-model="rating"
+                name="rating"
+                value="4"
+              />
+              <label for="4" class="p-2">4</label>
+              <input
+                type="radio"
+                id="3"
+                v-model="rating"
+                name="rating"
+                value="3"
+              />
+              <label for="3" class="p-2">3</label>
+              <input
+                type="radio"
+                id="2"
+                v-model="rating"
+                name="rating"
+                value="2"
+              />
+              <label for="2" class="p-2">2</label>
+              <input
+                type="radio"
+                id="1"
+                v-model="rating"
+                name="rating"
+                value="1"
+              />
+              <label for="1" class="p-2">1</label>
+            </div>
+            <div class="pb-6">
+              <label for="comment">Comments : </label>
+              <input
+                type="text"
+                id="comment"
+                v-model="comment"
+                placeholder="your comment"
+                class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+              />
+            </div>
+            <button
+              type="submit"
+              class="p-2 rounded-full bg-green-400 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
+            >
+              submit
+            </button>
+          </form>
+        </div>
+      </div>
+      <div class="bg-ombre-blue p-6 grid grid-cols-3 gap-4 rounded-lg ">
+        <div class="list" v-for="result in feedbackResults" :key="result.id">
+          <div class="text-pale-yellow">
+            <div class="bg-coral-orange reviewBox m-2 p-2 rounded-lg">
               <div>
-                <p class="text-black">Please rating your menu:</p>
-                <input
-                  type="radio"
-                  id="5"
-                  v-model="newRating"
-                  name="rating"
-                  value="5"
-                />
-                <label for="5" class="p-2">5</label>
-                <input
-                  type="radio"
-                  id="4"
-                  v-model="newRating"
-                  name="rating"
-                  value="4"
-                />
-                <label for="4" class="p-2">4</label>
-                <input
-                  type="radio"
-                  id="3"
-                  v-model="newRating"
-                  name="rating"
-                  value="3"
-                />
-                <label for="3" class="p-2">3</label>
-                <input
-                  type="radio"
-                  id="2"
-                  v-model="newRating"
-                  name="rating"
-                  value="2"
-                />
-                <label for="2" class="p-2">2</label>
-                <input
-                  type="radio"
-                  id="1"
-                  v-model="newRating"
-                  name="rating"
-                  value="1"
-                />
-                <label for="1" class="p-2">1</label>
+                Review from:
+                <span class="text-indigo-800">{{ result.customerName }}</span>
               </div>
-              <div class="pb-6">
-                <label for="comment">Comments : </label>
-                <input
-                  type="text"
-                  id="comment"
-                  v-model="newComment"
-                  placeholder="your comment"
-                  class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-                />
+              <div>
+                menu:
+                <span class="text-indigo-800">{{ result.reviewedmenu }}</span>
               </div>
-              <button
-                type="submit"
-                class="p-2 rounded-full bg-green-400 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
-              >
-                submit
-              </button>
-            </form>
+              <div>
+                rating: <span class="text-indigo-800">{{ result.rating }}</span>
+              </div>
+              <div v-if="result.comment">
+                comments:
+                <span class="text-indigo-800">{{ result.comment }}</span>
+              </div>
+              <div class="p-2">
+                <button
+                  class="bg-green-emeral p-1.5 m-4 rounded-full"
+                  @click="editFeedback"
+                >
+                  EDIT
+                </button>
+                <button
+                  class="bg-dark-rose p-1.5 m-1 rounded-full"
+                  @click="deleteFeedback(result.id)"
+                >
+                  DELETE
+                </button>
+              </div>
+            </div>
+
+            <div>
+              <form @submit.prevent="editSubmit(result)" v-if="isEdit">
+                <div class="pb-6">
+                  <p>{{ result.customerName }}</p>
+                </div>
+
+                <div class="pb-6">
+                  <label for="reviewedMenu">Menu : </label>
+                  <input
+                    type="text"
+                    id="reviewedMenu"
+                    v-model="newMenuName"
+                    placeholder="your menu"
+                    class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                    required
+                  />
+                </div>
+
+                <div>
+                  <p class="text-black">Please rating your menu:</p>
+                  <input
+                    type="radio"
+                    id="5"
+                    v-model="newRating"
+                    name="rating"
+                    value="5"
+                  />
+                  <label for="5" class="p-2">5</label>
+                  <input
+                    type="radio"
+                    id="4"
+                    v-model="newRating"
+                    name="rating"
+                    value="4"
+                  />
+                  <label for="4" class="p-2">4</label>
+                  <input
+                    type="radio"
+                    id="3"
+                    v-model="newRating"
+                    name="rating"
+                    value="3"
+                  />
+                  <label for="3" class="p-2">3</label>
+                  <input
+                    type="radio"
+                    id="2"
+                    v-model="newRating"
+                    name="rating"
+                    value="2"
+                  />
+                  <label for="2" class="p-2">2</label>
+                  <input
+                    type="radio"
+                    id="1"
+                    v-model="newRating"
+                    name="rating"
+                    value="1"
+                  />
+                  <label for="1" class="p-2">1</label>
+                </div>
+                <div class="pb-6">
+                  <label for="comment">Comments : </label>
+                  <input
+                    type="text"
+                    id="comment"
+                    v-model="newComment"
+                    placeholder="your comment"
+                    class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+                  />
+                </div>
+                <button
+                  type="submit"
+                  class="p-2 rounded-full bg-green-400 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
+                >
+                  submit
+                </button>
+              </form>
+            </div>
           </div>
         </div>
       </div>
     </div>
   </div>
-</div>
-  
 </template>
 
 <script>
@@ -407,16 +414,19 @@ export default {
   filter: grayscale(0);
   transform: scale(1.05);
 }
-.commentBox:hover{
-background-color: deeppink;
+.commentBox:hover {
+  background-color: deeppink;
 }
-.reviewBox:hover{
-background-color: deeppink;
+.reviewBox:hover {
+  background-color: deeppink;
 }
-.page{
+.page {
   background-color: whitesmoke;
 }
-.posterBox:hover{
+.posterBox:hover {
   background-color: deeppink;
+}
+.listMenu {
+  writing-mode: vertical-rl;
 }
 </style>
