@@ -1,13 +1,10 @@
 <template>
   <div class="justify-items-center">
-   
-      <p class="text-sm text-green-emeral justify-end">feedback and catalog</p>
-      <p class="text-8xl">
+    <p class="text-sm text-green-emeral justify-end">feedback and catalog</p>
+    <p class="text-8xl">
       <span class="text-yellow-500">DROP BY</span>
       <span class="italic text-indigo-400"> DOUGH</span>
-      </p>
-
-    
+    </p>
   </div>
 
   <p
@@ -54,6 +51,124 @@
       </div>
     </div>
   </div>
+
+  <div class="p-10 feedBack text-4xl text-slamon-pink col-2">FEEDBACK</div>
+  <div class="flex justify-items-center mb-2">
+    <div class="m-auto bg-green-200 p-8">
+      <form @submit.prevent="addFeedback">
+        <div class="pb-6">
+          <label for="customerName" class="my-96">reviewer : </label>
+          <input
+            type="text"
+            id="customerName"
+            v-model="customerName"
+            placeholder="enter your name"
+            class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            required
+          />
+        </div>
+
+        <div class="pb-6">
+          <label for="reviewedMenu">Menu : </label>
+          <input
+            type="text"
+            id="reviewedMenu"
+            v-model="reviewedmenu"
+            placeholder="your menu"
+            class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            required
+          />
+        </div>
+        <div>
+          <p class="text-black">Please rating your menu:</p>
+          <input type="radio" id="5" v-model="rating" name="rating" value="5" />
+          <label for="5" class="p-2">5</label>
+          <input type="radio" id="4" v-model="rating" name="rating" value="4" />
+          <label for="4" class="p-2">4</label>
+          <input type="radio" id="3" v-model="rating" name="rating" value="3" />
+          <label for="3" class="p-2">3</label>
+          <input type="radio" id="2" v-model="rating" name="rating" value="2" />
+          <label for="2" class="p-2">2</label>
+          <input type="radio" id="1" v-model="rating" name="rating" value="1" />
+          <label for="1" class="p-2">1</label>
+        </div>
+        <div class="pb-6">
+          <label for="comment">Comments : </label>
+          <input
+            type="text"
+            id="comment"
+            v-model="comment"
+            placeholder="your comment"
+            class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+          />
+        </div>
+        <button
+          type="submit"
+          class="p-2 rounded-full bg-green-400 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
+        >
+          submit
+        </button>
+      </form>
+    </div>
+  </div>
+  <div class="list" v-for="result in feedbackResults" :key="result.id">
+    <div class="bg-pink-300 p-6">
+      <div>review from: {{ result.customerName }}</div>
+      <div>menu: {{ result.reviewedmenu }}</div>
+      <div>rating: {{ result.rating }}</div>
+      <div v-if="result.comment">comments: {{ result.comment }}</div>
+      <button class="bg-gray-300 px-2" @click="editFeedback">EDIT</button>
+      <button class="bg-gray-300 px-2" @click="deleteFeedback(result.id)">
+        DELETE
+      </button>
+      <form @submit.prevent="editSubmit(result)" v-if="isEdit">
+        <div class="pb-6">
+          <p>{{ result.customerName }}</p>
+        </div>
+
+        <div class="pb-6">
+          <label for="reviewedMenu">Menu : </label>
+          <input 
+            type="text"
+            id="reviewedMenu"
+            v-model="newMenuName"
+            placeholder="your menu"
+            class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+            required
+          />
+        </div>
+        <div>
+          <p class="text-black">Please rating your menu:</p>
+          <input type="radio" id="5" v-model="newRating" name="rating" value="5" />
+          <label for="5" class="p-2">5</label>
+          <input type="radio" id="4" v-model="newRating" name="rating" value="4" />
+          <label for="4" class="p-2">4</label>
+          <input type="radio" id="3" v-model="newRating" name="rating" value="3" />
+          <label for="3" class="p-2">3</label>
+          <input type="radio" id="2" v-model="newRating" name="rating" value="2" />
+          <label for="2" class="p-2">2</label>
+          <input type="radio" id="1" v-model="newRating" name="rating" value="1" />
+          <label for="1" class="p-2">1</label>
+        </div>
+        <div class="pb-6">
+          <label for="comment">Comments : </label>
+          <input
+            type="text"
+            id="comment"
+            v-model="newComment"
+            placeholder="your comment"
+            class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
+          />
+        </div>
+        <button
+          type="submit"
+          class="p-2 rounded-full bg-green-400 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50"
+        >
+          submit
+        </button>
+      </form>
+    </div>
+  </div>
 </template>
 
 <script>
@@ -81,16 +196,96 @@ export default {
         { id: 3, img: require("../assets/Poster/DonutPoster/3.jpg") },
         { id: 4, img: require("../assets/Poster/DonutPoster/4.jpg") },
       ],
+      comment: "",
+      customerName: "",
+      rating: null,
+      reviewedmenu: "",
+      feedbackResults: [],
+      url: "http://localhost:5000/comments",
+      isEdit: false,
+      newMenuName: "",
+      newRating: "",
+      newComment: "",
     };
   },
   methods: {
-    // onHoverimg() {
-    //     this.$emit("on-Hv",index);
-    //     //  console.log(this.members[index])
-    //   },
-    //   onUnhover() {
-    //     this.$emit("un-Hv",index);
-    //   },
+    async addFeedback() {
+      const newFeedback = {
+        customerName: this.customerName,
+        reviewedmenu: this.reviewedmenu,
+        rating: this.rating,
+        comment: this.comment,
+      };
+      const res = await fetch(this.url, {
+        method: "POST",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          customerName: newFeedback.customerName,
+          reviewedmenu: newFeedback.reviewedmenu,
+          rating: newFeedback.rating,
+          comment: newFeedback.comment,
+        }),
+      });
+      const data = await res.json();
+      (this.feedbackResults = [...this.feedbackResults, data]),
+        (this.comment = ""),
+        (this.customerName = ""),
+        (this.rating = null),
+        (this.reviewedmenu = "");
+    },
+    async fetchFeedbackResult() {
+      const res = await fetch(this.url);
+      const data = await res.json();
+      return data;
+    },
+    async deleteFeedback(id) {
+      if (confirm(`Are you sure to delete ?`)) {
+        const res = await fetch(`${this.url}/${id}`, {
+          method: "DELETE",
+        });
+        res.status === 200
+          ? (this.feedbackResults = this.feedbackResults.filter(
+              (feedback) => feedback.id !== id
+            ))
+          : alert("Error to delete feedback");
+      }
+    },
+    editFeedback() {
+      this.isEdit = true;
+    },
+    async editSubmit(editingData) {
+      const res = await fetch(`${this.url}/${editingData.id}`, {
+        method: "PUT",
+        headers: {
+          "Content-type": "application/json",
+        },
+        body: JSON.stringify({
+          customerName:editingData.customerName,
+          reviewedmenu: this.newMenuName,
+          rating: this.newRating,
+          comment: this.newComment,
+        }),
+      });
+      const data = await res.json();
+      this.feedbackResults = this.feedbackResults.map((survey) =>
+        survey.id === data.id
+          ? {
+              ...survey,
+              customerName:data.customerName,
+              reviewedmenu: data.reviewedmenu,
+              rating: data.rating,
+              comment: data.comment,
+            }
+          : survey
+      );
+      this.isEdit = false;
+      (this.newMenuName = ""), (this.newRating = null), (this.comment = "");
+    },
+  },
+  async created() {
+    this.feedbackResults = await this.fetchFeedbackResult();
   },
 };
 </script>

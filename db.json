@@ -1,0 +1,23 @@
+{
+  "comments": [
+    {
+      "reviewedmenu": "ice cream",
+      "rating": "5",
+      "comment": "ช้อคโกเเลตเข้มข้น",
+      "id": 2
+    },
+    {
+      "customerName": "kikiphhaeng",
+      "reviewedmenu": "ฝอยทอง",
+      "rating": "3",
+      "comment": "ไม่ได้กินร้านนี้",
+      "id": 3
+    },
+    {
+      "reviewedmenu": "โดนัท",
+      "rating": "4",
+      "comment": "เเยมอร่อย",
+      "id": 4
+    }
+  ]
+}

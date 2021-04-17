@@ -19,79 +19,21 @@
           <div class="text-sm font-semibold font-serif text-slamon-pink">
             price : {{ item.price }}
           </div>
-          <div
-            class="bg-dark-rose rounded-full py-3 px-6 flex items-center justify-center hover:bg-green-400"
-            @click="addComment(item.name)"
-          >
-            <div>
-              <span class="text-white mr-3">add comments</span>
-              <i class="far fa-comment"></i>
-            </div>
-          </div>
+          
         </div>
-        <div class="items-start">
-          <form v-if="isCalled" @submit.prevent="submitComment">
-            <label for="reviewedMenu">{{ item.name }} : </label
-            >
-            <input
-              type="text"
-              id="reviewedMenu"
-              v-model="msg"
-              placeholder="feedback"
-              class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-              required
-            /><br/><br/>
-            <label for="customerName">reviewer : </label>
-            <input
-              type="text"
-              id="customerName"
-              v-model="customerName"
-              placeholder="enter your name"
-              class="border border-transparent focus:outline-none focus:ring-2 focus:ring-purple-600 focus:border-transparent"
-              required
-            /><br/>
-            <button type="submit" class=" p-2 rounded-full bg-green-400 hover:bg-red-400 focus:outline-none focus:ring-2 focus:ring-purple-600 focus:ring-opacity-50">submit</button>
-          </form>
-        </div>
+        
       </div>
     </div>
   </div>
 
-  <div class=" p-10 feedBack text-4xl text-slamon-pink">FEEDBACK
-    <p>
-    Lorem ipsum dolor sit, amet consectetur adipisicing elit. Repudiandae excepturi nihil suscipit facere facilis porro sunt tempora, nam quas, fugit ratione quia exercitationem enim nisi consectetur eligendi earum libero quaerat.
-    </p>
-  </div>
+  
 </template>
 
 <script>
 export default {
-  data() {
-    return {
-      msg: "",
-      customerName: "",
-      isCalled: false,
-      menuName: "",
-      comments: [],
-    };
-  },
+ 
   props: ["items", "menu"],
-  methods: {
-    addComment(name) {
-      this.isCalled = !this.isCalled;
-      this.menuName = name;
-    },
-    submitComment() {
-      this.comments.push({
-        menuName: this.menuName,
-        reviewer: this.customerName,
-        comment: this.msg,
-      });
-      (this.menuName = ""), (this.customerName = ""), (this.msg = "");
-
-      console.log(this.comments);
-    },
-  },
+  
 };
 </script>
 
